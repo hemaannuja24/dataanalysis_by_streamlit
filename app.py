@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 # Set up the title and description of the app
+st.set_page_config(page_title="DASHBOARD FOR SALES ANALYSIS",layout='wide')
 st.title("Sales Data Analysis for Retail Store")
 st.write("This application analyzes sales data for various product categories.")
 
@@ -39,6 +40,11 @@ category=st.sidebar.multiselect(
     options=sales_data['category'].unique(),
     default=sales_data['category'].unique(),
 )
+
+df_selection=sales_data.query(
+        "category == @category"
+)
+st.dataframe(df_selection) 
 
 # Display the sales data
 st.subheader("Sales Data")
